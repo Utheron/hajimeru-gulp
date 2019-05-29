@@ -1,5 +1,5 @@
 # HAJIMERU GULP
-- FontAwesome 5.5.0 already provided
+- FontAwesome 5.5.0 provided
 
 ## Install
 ```
@@ -9,12 +9,26 @@ Rename folder **hajimeru-gulp** according to your project (ex: /www)
 
 ## GULP4 SPECIFIC
 - Edit/Create the file named **.env** according to your environment
+- SRC is where your source files are
+- DIST is where your processed source files goes
+- IMG is where your source files are
 ```
-# Your site URL (ex: localhost/mywebsite or mywebsite.com)
-SITE_URL=
-
-# Your IP address for BrowserSync external access on port 3000
-EXTERNAL_URL=
+#####################################################################
+# ASSETS
+#####################################################################
+SRC     = ./src/
+DIST    = ./assets/
+IMG     = ./img/
+```
+```
+#####################################################################
+# SETTINGS
+# -------------------------------------------------------------------
+# SITE_URL is the domain address like www.mywebsite.com or localhost
+# EXTERNAL_URL is your IP address for external acces on port 3000
+#####################################################################
+SITE_URL        = localhost
+EXTERNAL_URL    = 0.0.0.0
 ```
 - Add the BrowserSync script in your main view and replace **localhost** with the **siteUrl**
 ```
@@ -23,18 +37,21 @@ EXTERNAL_URL=
 - Add exceptions for the ports 3000 and 3001 in your firewall
 
 ## TASKS
-- Style and script minification
+- Style and Script minification
 ```
 gulp
 ```
-- Images minification from the folder **/src/img**
+- Images minification
 ```
 gulp imagemin
 ```
-- Watch changes on style, script and php files + browser reload (this is the one you'll keep using)
+- Watch changes on Style, Script, PHP files and reload the browser on port 3000 (this is the one you'll keep using)
 ```
 gulp watch
 ```
 
 ## NOTES
-- You'll have to launch the imagemin task manually whenever you'll want to add your latest pictures.
+- You'll have to launch the imagemin task manually whenever you'll want to compress your latest pictures.
+
+## TO-DO
+- Some NPM packages were update manually in order to fix the moderate vulnerabilities warning. The CHECKSUM are still not corrected.
