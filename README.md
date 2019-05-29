@@ -54,4 +54,4 @@ gulp watch
 - You'll have to launch the imagemin task manually whenever you'll want to compress your latest pictures.
 
 ## TO-DO
-- Some NPM packages were update manually in order to fix the moderate vulnerabilities warning. The CHECKSUM are still not corrected.
+- ~~Some NPM packages were update manually in order to fix the moderate vulnerabilities warning. The CHECKSUM are still not corrected.~~
