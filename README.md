@@ -5,13 +5,17 @@
 ```
 git clone https://github.com/Utheron/hajimeru-gulp.git
 ```
-Rename folder **hajimeru-gulp** according to your project (ex: /www)
+- Rename folder **hajimeru-gulp** according to your project (ex: /www)
+```
+git clone https://github.com/Utheron/hajimeru-gulp.git .
+```
+- Or clone the repository directly at the root of your project
 
 ## GULP4 SPECIFIC
 - Edit/Create the file named **.env** according to your environment
-- SRC is where your source files are
-- DIST is where your processed source files goes
-- IMG is where your source files are
+- **SRC** is where your Sass and JS files are stored
+- **DIST** is where your processed source files goes and organized in subfolder automatically
+- **IMG** is where your pictures are stored
 ```
 #####################################################################
 # ASSETS
@@ -30,13 +34,16 @@ IMG     = ./img/
 SITE_URL        = localhost
 EXTERNAL_URL    = 0.0.0.0
 ```
-- Add the BrowserSync script in your main view and replace **localhost** with the **siteUrl**
+## BROWSER-SYNC SPECIFIC
 ```
 <script async src="//localhost:3000/browser-sync/browser-sync-client.js"></script>
 ```
-- Add exceptions for the ports 3000 and 3001 in your firewall
+- Add the **BrowserSync** script in your main view and replace **localhost** with the **siteUrl**
+- This previous step may be skipped as it doesn't seems mandatory anymore
+- Inside a Docker container, you must use **localhost** (took me a while to figure that out)
+- Add exceptions for the ports 3000 and 3001 in your firewall in order to connect from external hosts/devices
 
-## TASKS
+## GULP TASKS
 - Style and Script minification
 ```
 gulp
@@ -51,7 +58,7 @@ gulp watch
 ```
 
 ## NOTES
-- You'll have to launch the imagemin task manually whenever you'll want to compress your latest pictures.
+- You'll have to launch the **imagemin** task manually whenever you'll want to compress your latest pictures.
 
 ## TO-DO
 - ~~Some NPM packages were update manually in order to fix the moderate vulnerabilities warning. The CHECKSUM are still not corrected.~~
