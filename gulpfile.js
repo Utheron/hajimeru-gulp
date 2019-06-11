@@ -47,19 +47,22 @@ const browserSync       = require('browser-sync').create();
 // #####################################################################
 // # PROJECT RELATED
 // #####################################################################
-const siteUrl           = process.env.SITE_URL;
-const externalUrl       = process.env.EXTERNAL_URL;
-const assetsUrl         = process.env.DIST;
+const siteURL           = process.env.SITE_URL;
+const externalURL       = process.env.EXTERNAL_URL;
+const assetsURL         = process.env.DIST + process.env.TPL;
+const assetsSRC         = process.env.SRC + process.env.TPL;
+const imageFolder       = process.env.IMG;
 
-const styleSRC          = [ process.env.SRC + 'scss/style.scss' ]
-const styleWatch        = process.env.SRC + 'scss/**/*.scss';
+
+const styleSRC          = [ assetsSRC + '/scss/style.scss' ]
+const styleWatch        = assetsSRC + '/scss/**/*.scss';
 
 const scriptSRC         = 'script.js';
-const scriptFolder      = process.env.SRC + 'js/';
-const scriptWatch       = process.env.SRC + 'js/**/*.js';
+const scriptFolder      = assetsSRC + '/js/';
+const scriptWatch       = assetsSRC + '/js/**/*.js';
 const scriptFiles       = [scriptSRC];
 
-const imageSRC          = process.env.SRC + 'img/*';
+const imageSRC          = assetsSRC + imageFolder + '/*';
 
 const phpFiles          = '**/*.php';
 
@@ -69,8 +72,8 @@ const phpFiles          = '**/*.php';
 function browser_sync(done) {
     browserSync.init({
         open: false,
-        proxy: siteUrl,
-        host: externalUrl,
+        proxy: siteURL,
+        host: externalURL,
         port: 3000,
         notify: false
     });
@@ -91,7 +94,7 @@ function styles(done) {
         .pipe(autoprefixer({browsers: ['last 2 versions', '> 5%', 'Firefox ESR']}))
         .pipe(rename({extname: '.min.css'}))
         .pipe(sourcemaps.write('./'))
-        .pipe(dest(assetsUrl + 'css'))
+        .pipe(dest(assetsURL + '/css'))
         .pipe(browserSync.stream());
     done();
 }
@@ -107,7 +110,7 @@ function scripts(done) {
             .pipe(sourcemaps.init({loadMaps: true}))
             .pipe(uglify())
             .pipe(sourcemaps.write('./'))
-            .pipe(dest(assetsUrl + 'js'))
+            .pipe(dest(assetsURL + '/js'))
             .pipe(browserSync.stream());
     });
     done();
@@ -122,7 +125,7 @@ function compress_img() {
             imagemin.jpegtran({ progressive: true }),
             imageminMozjpeg({ quality: 70 })
         ])))
-        .pipe(dest(assetsUrl + 'img'));
+        .pipe(dest(assetsURL + imageFolder));
 }
 
 function watch_files() {
