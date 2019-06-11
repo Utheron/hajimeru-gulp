@@ -15,14 +15,16 @@ git clone https://github.com/Utheron/hajimeru-gulp.git .
 - Edit/Create the file named **.env** according to your environment
 - **SRC** is where your Sass and JS files are stored
 - **DIST** is where your processed source files goes and organized in subfolder automatically
+- **TPL** is your template folder name
 - **IMG** is where your pictures are stored
 ```
 #####################################################################
 # ASSETS
 #####################################################################
-SRC     = ./src/
-DIST    = ./assets/
-IMG     = ./img/
+SRC     = ./src
+DIST    = ./assets
+TPL     = /default
+IMG     = /img
 ```
 ```
 #####################################################################
@@ -62,3 +64,4 @@ gulp watch
 
 ## TO-DO
 - ~~Some NPM packages were update manually in order to fix the moderate vulnerabilities warning. The CHECKSUM are still not corrected.~~
+- NPM packages with some new vunerabilities (moderate), not fixed yet. I'm on it.
