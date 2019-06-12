@@ -20,5 +20,4 @@ Thumbs.db
 // ## DEV ENV ################################################
 .idea/
 node_modules/
-src/img/
-assets/img/
+src/default/img/
