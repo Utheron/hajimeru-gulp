@@ -29,6 +29,8 @@ const buffer            = require("vinyl-buffer");
 const rename            = require('gulp-rename');
 const sourcemaps        = require('gulp-sourcemaps');
 const plumber           = require('gulp-plumber');
+const purify            = require('gulp-purify-css');
+const replace           = require('gulp-replace');
 
 // #####################################################################
 // # PICTURES RELATED
@@ -65,6 +67,7 @@ const scriptFiles       = [scriptSRC];
 const imageSRC          = assetsSRC + imageFolder + '/*';
 
 const phpFiles          = '**/*.php';
+const htmlFiles          = '**/*.html';
 
 // #####################################################################
 // # FUNCTIONS
@@ -92,6 +95,9 @@ function styles(done) {
         .pipe(sass({errLogToConsole: true, outputStyle: 'compressed'}))
         .on('error', console.error.bind(console))
         .pipe(autoprefixer({browsers: ['last 2 versions', '> 5%', 'Firefox ESR']}))
+        .pipe(purify(['./HTML/**/*.html']))     // Your view files
+        .pipe(sass({errLogToConsole: true, outputStyle: 'compressed'}))
+        .pipe(replace('!important', ''))        // Remove !important for AMP Validator
         .pipe(rename({extname: '.min.css'}))
         .pipe(sourcemaps.write('./'))
         .pipe(dest(assetsURL + '/css'))
@@ -132,6 +138,7 @@ function watch_files() {
     watch(styleWatch, series(styles, reload));
     watch(scriptWatch, series(scripts, reload));
     watch(phpFiles, reload);
+    watch(htmlFiles, reload);
 }
 
 // #####################################################################
