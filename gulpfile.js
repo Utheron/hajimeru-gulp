@@ -70,6 +70,19 @@ const phpFiles          = '**/*.php';
 const htmlFiles          = '**/*.html';
 
 // #####################################################################
+// # DEFAULT
+// #####################################################################
+const phpFiles          = '**/*.php';
+const htmlFiles          = '**/*.html';
+
+// #####################################################################
+// # SYMFONY
+// #####################################################################
+// const phpFiles          = '**/*.php';
+// const htmlFiles         = '../templates/**/*.html';
+// const twigFiles         = '../templates/**/*.twig';
+
+// #####################################################################
 // # FUNCTIONS
 // #####################################################################
 function browser_sync(done) {
@@ -87,6 +100,8 @@ function reload(done) {
     browserSync.reload();
     done();
 }
+
+// TODO: Create a standalone purify function
 
 function styles(done) {
     src(styleSRC, {allowEmpty: true})
@@ -139,6 +154,8 @@ function watch_files() {
     watch(scriptWatch, series(scripts, reload));
     watch(phpFiles, reload);
     watch(htmlFiles, reload);
+    // SYMFONY
+    // watch(twigFiles, reload);
 }
 
 // #####################################################################
