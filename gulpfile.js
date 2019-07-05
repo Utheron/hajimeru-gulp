@@ -66,9 +66,6 @@ const scriptFiles       = [scriptSRC];
 
 const imageSRC          = assetsSRC + imageFolder + '/*';
 
-const phpFiles          = '**/*.php';
-const htmlFiles          = '**/*.html';
-
 // #####################################################################
 // # DEFAULT
 // #####################################################################
